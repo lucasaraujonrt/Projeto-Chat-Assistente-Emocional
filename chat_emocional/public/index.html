@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/javascripts/ibmWatson.js"></script>
+    <link
+      rel="icon"
+      href="https://icon-icons.com/pt/icone/medico-medico-enfermeiro/73943#32"
+    />
+    <title>Chat Emocional</title>
+  </head>
+  <body>
+    <h1>Chatbot Emocional</h1>
+    <form name="chatForm" method="post">
+      <input type="text" size="100px" name="textMessage" />
+      <input type="button" onclick="sendMessageToAssistant();" value="Enviar" />
+    </form>
+    <br />
+    <div id="chat"></div>
+  </body>
+</html>
