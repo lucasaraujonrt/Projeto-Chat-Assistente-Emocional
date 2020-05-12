@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Chat Emocional</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/javascripts/ibmWatson.js"></script>
     <script src="/javascripts/recorder.js"></script>
@@ -13,24 +14,24 @@
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
       crossorigin="anonymous"
     />
-    <title>Chat Emocional</title>
   </head>
+
   <body>
-    <h1>Chatbot Emocional</h1>
+    <h1>Chat Emocional</h1>
     <i
       id="muteButton"
       class="fas fa-volume-mute"
-      style="display: node;"
+      style="display: none;"
       onclick="allowAutoPlay();"
     ></i>
     <form name="chatForm" method="post">
       <input type="text" size="100px" name="textMessage" />
-      <input type="button" onclick="sendMessageToAssistant();" value="Enviar" />
+      <input type="button" onclick="sendMessageToAssistant();" value="enviar" />
       <i
         id="recordButton"
         class="fas fa-microphone-alt"
         style="font-size: 40px;"
-        onclick="controlRecoding(this);"
+        onclick="controlRecording(this);"
       ></i>
     </form>
     <br />

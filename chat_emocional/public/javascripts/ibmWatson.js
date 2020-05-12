@@ -1,10 +1,12 @@
 //variavel para controlar o contexto
 var contextDialog = "{}";
 
-function sendMessageToAssistant() {
+function sendMessageToAssistant(textMessage) {
+  //se nao recebeu mensagem por parâmetro
   //recupera mensagem digitada pelo usuario
   if (textMessage === undefined || textMessage === "")
     var textMessage = document.chatForm.textMessage.value;
+
   chat = document.getElementById("chat");
 
   if (textMessage === undefined || textMessage === "") textMessage = "";
@@ -29,6 +31,8 @@ function sendMessageToAssistant() {
           "Chatbot --> " + returnedData.data.result.output.text + "<br>";
         contextDialog = JSON.stringify(returnedData.data.result.context);
 
+        //se o browser nao for chrome ou se tiver habilitado o som da pagina
+        //chama o servico text to speech, passando o retorno do assistant
         if (
           navigator.userAgent.indexOf("Chrome") === -1 ||
           $("#muteButton").attr("class").match("off")
@@ -45,6 +49,54 @@ function sendMessageToAssistant() {
     });
 }
 
+function sendTextToSpeech(textMessage) {
+  //cria elemento de audio do html para tocar o audio da API
+  var audioElement = document.createElement("audio");
+  // especifica o atributo type do audio
+  audioElement.setAttribute("type", "audio/ogg;codecs=opus");
+  // define como source do audio o retorno do textToSpeech
+  audioElement.setAttribute(
+    "src",
+    "ibmWatson/textToSpeech?text=" + textMessage
+  );
+  //toca o audio
+  audioElement.play();
+}
+
+function sendAudioToSpeechToText(blob) {
+  //criar um formulario para enviar o arquivo de audio
+  var form = new FormData();
+  form.append("audioFile", blob);
+  //post para o servico speechToText
+  $.ajax({
+    url: "ibmWatson/speechToText",
+    type: "post",
+    data: form,
+    processData: false,
+    contentType: false,
+    //tratamento de erro do post
+    error: function (returnedData) {
+      alert("Erro: " + returnedData.status + " " + returnedData.statusText);
+    },
+    //tratamento de sucesso de processamento do post
+    success: function (returnedData) {
+      //se ocorrer erro no processamento da API
+      if (returnedData.status === "ERRO") alert("Erro: " + returnedData);
+      //caso os dados tenham retornado com sucesso
+      else {
+        //recupera a conversao do audio em texto
+        if (returnedData.data.result.results[0] != undefined) {
+          var retorno = JSON.stringify(
+            returnedData.data.result.results[0].alternatives[0].transcript
+          ).replace(/"/g, "");
+          //envia o texto do audio para obter o retorno do chat
+          sendMessageToAssistant(retorno);
+        }
+      }
+    },
+  });
+}
+
 //envia mensagem quando o usuário pressionar enter
 $(document).keypress(function (event) {
   if (event.which == "13") {
@@ -55,50 +107,18 @@ $(document).keypress(function (event) {
 
 //post para exibir a mensagem de boas vindas do chat
 $(document).ready(function () {
+  //pedir para habilitar o som, caso for o chrome
   if (navigator.userAgent.indexOf("Chrome") != -1) {
     document
       .getElementById("muteButton")
-      .setAttribute("style", "font-size: 40px;");
-    alert("Ative o som se quiser iniciar o dialogo por voz!!");
+      .setAttribute("style", "font-size:40px;");
+    alert("Ative o som se quiser iniciar o diálogo por voz!");
   }
+
   sendMessageToAssistant();
 });
+
+// permite a execução do som no chrome
 function allowAutoPlay() {
   $("#muteButton").attr("class", "fas fa-volume-off");
-}
-
-function sendTextToSpeech(textMessage) {
-  var audioElement = document.createElement("audio");
-  audioElement.setAttribute("type", "audio/ogg:codecs=opus");
-  audioElement.setAttribute(
-    "src",
-    "/ibmWatson/textToSpeech?text=" + textMessage
-  );
-  audioElement.play();
-}
-
-function sendAudioToSpeechToText(blob) {
-  var form = new FormData();
-  form.append("audioFile", blob);
-  $.ajax({
-    url: "ibmWatson/speechToText",
-    type: "post",
-    data: form,
-    processData: false,
-    contextType: false,
-    error: function (returnedData) {
-      alert("Erro: " + returnedData.status + " " + returnedData.statusText);
-    },
-    success: function (returnedData) {
-      if (returnedData.status === "ERRO") alert("Erro: " + returnedData.data);
-      else {
-        if (returnedData.data.result.results[0] != undefined) {
-          var retorno = JSON.stringify(
-            returnedData.data.result.results[0].alternatives[0].transcript
-          ).replace(/"/g, "");
-          sendMessageToAssistant(retorno);
-        }
-      }
-    },
-  });
 }
