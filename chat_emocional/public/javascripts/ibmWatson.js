@@ -17,13 +17,13 @@ function sendMessageToAssistant(textMessage) {
   document.chatForm.textMessage.value = "";
 
   //post para o serviço watsonAssistant
-  $.post(
-    "/ibmWatson/assistant",
+  $.post("/ibmWatson/assistant",
     { text: textMessage, contextDialog },
     //tratamento de sucesso de processamento do post
     function (returnedData, statusRequest) {
       //se ocorreu algum erro no processamento da API
-      if (returnedData.status === "ERRO") alert(returnedData.data);
+      if (returnedData.status === "ERRO")
+        alert(returnedData.data);
       //caso os dados tenham retornado com sucesso
       else {
         //retorno da API e recupera o contexto para o proximo dialogo
@@ -111,8 +111,6 @@ $(document).ready(function () {
   if (navigator.userAgent.indexOf("Chrome") != -1) {
     document
       .getElementById("muteButton")
-      .setAttribute("style", "font-size:40px;");
-    alert("Ative o som se quiser iniciar o diálogo por voz!");
   }
 
   sendMessageToAssistant();

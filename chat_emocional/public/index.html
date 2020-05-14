@@ -1,40 +1,69 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>Chat Emocional</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="/javascripts/ibmWatson.js"></script>
-    <script src="/javascripts/recorder.js"></script>
-    <script src="/javascripts/audioControl.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-      crossorigin="anonymous"
-    />
-  </head>
 
-  <body>
-    <h1>Chat Emocional</h1>
-    <i
-      id="muteButton"
-      class="fas fa-volume-mute"
-      style="display: none;"
-      onclick="allowAutoPlay();"
-    ></i>
-    <form name="chatForm" method="post">
-      <input type="text" size="100px" name="textMessage" />
-      <input type="button" onclick="sendMessageToAssistant();" value="enviar" />
-      <i
-        id="recordButton"
-        class="fas fa-microphone-alt"
-        style="font-size: 40px;"
-        onclick="controlRecording(this);"
-      ></i>
-    </form>
-    <br />
-    <div id="chat"></div>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Chat Emocional</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="/javascripts/ibmWatson.js"></script>
+  <script src="/javascripts/recorder.js"></script>
+  <script src="/javascripts/audioControl.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="./stylesheets/style.css" />
+</head>
+
+<body>
+  <div class="container-fluid">
+    <nav class="nav justify-content-center" style="background-color: #7EA4B7;">
+      <h1>Chat Emocional</h1>
+    </nav>
+  </div>
+  <div class="row conteudo">
+    <div class="col-md-4 d-flex flex-column infoChat">
+      <div class="img d-flex justify-content-center">
+        <img src="./images/Screenshot_1.png" />
+      </div>
+      <div class="mb-auto p-2">
+        <p>Olá, meu nome é Anna ! Sou uma chatbot emocional que está aqui para tentar ajuda-lo em momentos difíceis.
+        </p>
+        <p>Então, sinta-se a vontade para conversar e desabafar comigo! Você pode me contar seus sintomas, pedir
+          conselhos
+          e recomendações de atividades para se distrair um pouco.</p>
+        <p>E sempre procure por ajuda de um profissional! Espero que consigamos te ajudar!!</p>
+      </div>
+      <div class="mt-auto p-2">
+        <p class="font-weight-bold m0">Precisa de ajuda?</p>
+        <p class="m0">Ligue para 188 CVV (Centro de Valorização da Vida).</p>
+      </div>
+    </div>
+    <div class="col-md-8 d-flex flex-column align-items-end chat">
+      <div class="conversa">
+        <div id="chat"></div>
+      </div>
+      <div class="comandos">
+        <form name="chatForm" method="post">
+          <div class="row m-2">
+            <div class="col-2 d-flex flex-row justify-content-around" style="margin-top: 4px;">
+              <div><i id="muteButton" class="fas fa-volume-mute" onclick="allowAutoPlay();"></i></div>
+              <div><i id="recordButton" class="fas fa-microphone-alt" onclick="controlRecording(this);"></i></div>
+            </div>
+            <div class="col-8">
+              <input class="form-control rounded-pill" type="text" name="textMessage" id="textMessage" s />
+            </div>
+            <div class="col-2">
+              <input type="button" id="btEnviar" class="form-control rounded-pill" onclick="sendMessageToAssistant();"
+                value="Enviar" />
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+
+</body>
+
 </html>
