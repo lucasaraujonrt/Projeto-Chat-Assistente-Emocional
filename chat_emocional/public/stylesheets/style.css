@@ -38,6 +38,9 @@ body{
 
 .infoChat p{
   font-size:.9rem;
+  margin-left:10px;
+  margin-right: 10px;
+  text-align: justify;
 }
 
 .conversa{
@@ -47,6 +50,57 @@ body{
 
 .chat{
 background-color:#FFFAFF;
+}
+
+#chat{
+  max-height: calc(100vh - 110px);
+}
+
+.chatLinha{
+  display: flex;
+  flex-direction: row;
+}
+
+.chatLinha img{
+  width:100px;
+  height: 100px;
+  align-self: center;
+}
+
+.chatBalao{
+  background-color:#fff;
+  display: inline-table;
+  max-width: 60%;
+  border:1px solid #4D4C4D;
+  border-radius: 25px;
+  margin: 25px 0;
+}
+
+.chatBalao p, .voceChatBalao p{
+  margin:0;
+  font-size: .9rem;
+  padding: 10px;
+  text-align: justify;
+}
+
+.voceChatLinha{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.voceChatLinha img{
+  width:100px;
+  align-self: center;
+}
+
+.voceChatBalao{
+  display: inline-table;
+  background-color:#cae3ee;
+  max-width: 60%;
+  border:1px solid #4D4C4D;
+  border-radius: 25px;
+  margin: 15px 0;
 }
 
 .comandos{

@@ -11,7 +11,13 @@ function sendMessageToAssistant(textMessage) {
 
   if (textMessage === undefined || textMessage === "") textMessage = "";
   // exibe mensagem na tela
-  else chat.innerHTML += "Você --> " + textMessage + "<br>";
+  else chat.innerHTML +=
+    "<div class='voceChatLinha'>" +
+    "<div class='voceChatBalao'>" +
+    "<p>" + textMessage + "</p>" +
+    "</div>" +
+    "<img src='/images/voce.png'/>" +
+    "</div>";
 
   //limpa o campo input
   document.chatForm.textMessage.value = "";
@@ -28,7 +34,12 @@ function sendMessageToAssistant(textMessage) {
       else {
         //retorno da API e recupera o contexto para o proximo dialogo
         chat.innerHTML +=
-          "Chatbot --> " + returnedData.data.result.output.text + "<br>";
+          "<div class='chatLinha'>" +
+          "<img src='/images/Anna.png'>" +
+          "<div class='chatBalao'>" +
+          "<p>" + returnedData.data.result.output.text + "</p>" +
+          "</div>" +
+          "</div>";
         contextDialog = JSON.stringify(returnedData.data.result.context);
 
         //se o browser nao for chrome ou se tiver habilitado o som da pagina
