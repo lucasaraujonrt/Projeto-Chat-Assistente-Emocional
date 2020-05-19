@@ -42,7 +42,7 @@
     </div>
     <div class="col-md-8 d-flex flex-column align-items-end chat">
       <div class="conversa">
-        <div id="chat" data-spy="scroll" data-offset="0"></div>
+        <div id="chat"></div>
       </div>
       <div class="comandos">
         <form name="chatForm" method="post">
@@ -52,7 +52,8 @@
               <div><i id="recordButton" class="fas fa-microphone-alt" onclick="controlRecording(this);"></i></div>
             </div>
             <div class="col-8">
-              <input class="form-control rounded-pill" type="text" name="textMessage" id="textMessage" s />
+              <input class="form-control rounded-pill" type="text" name="textMessage" id="textMessage"
+                placeholder="Digite uma mensagem" />
             </div>
             <div class="col-2">
               <input type="button" id="btEnviar" class="form-control rounded-pill" onclick="sendMessageToAssistant();"

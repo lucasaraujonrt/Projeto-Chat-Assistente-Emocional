@@ -22,6 +22,9 @@ function sendMessageToAssistant(textMessage) {
   //limpa o campo input
   document.chatForm.textMessage.value = "";
 
+  var objDiv = document.getElementById("chat");
+  objDiv.scrollTop = objDiv.scrollHeight;
+
   //post para o serviço watsonAssistant
   $.post("/ibmWatson/assistant",
     { text: textMessage, contextDialog },
@@ -41,6 +44,8 @@ function sendMessageToAssistant(textMessage) {
           "</div>" +
           "</div>";
         contextDialog = JSON.stringify(returnedData.data.result.context);
+
+        objDiv.scrollTop = objDiv.scrollHeight;
 
         //se o browser nao for chrome ou se tiver habilitado o som da pagina
         //chama o servico text to speech, passando o retorno do assistant
