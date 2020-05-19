@@ -14,6 +14,15 @@ body{
   padding:0;
 }
 
+.buttonToggle{
+  position:fixed;
+  left:0;
+  height: 56px;
+  border:0 none;
+  background-color:#7EA4B7;
+  display:none;
+}
+
 .row{
   margin:0;
 }
@@ -22,9 +31,11 @@ body{
   height: calc(100% - 56px);
 }
 
+
 .infoChat{
   background-color: #95cddc;
   border-right: 1px solid #4B676F;
+  display: flex!important;
 }
 
 .img{
@@ -119,9 +130,20 @@ background-color:#FFFAFF;
   border-top: 1px solid #4D4C4D;
 }
 
+.icones{
+  margin-top: 4px;
+}
+
 i{
   font-size: 2rem;
   color:#4D585C;
+}
+
+#textMessage:focus{
+  border-color: #cccccc;
+  outline: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 #btEnviar{
@@ -129,4 +151,69 @@ i{
   color:#4D585C;
   margin-right: 10px;
   font-weight: 500;
+}
+
+@media screen and (min-width: 768px) and (max-width: 870px) {
+  .infoChat{
+    display: flex!important;
+  }
+  
+  .infoChat p{
+    font-size:.8rem;
+  }
+
+  .chatBalao p, .voceChatBalao p{
+    font-size: .8rem;
+  }
+
+  #btEnviar{
+    font-size: .9rem;
+  }
+
+  i{
+    font-size: 1.8rem;
+  }
+
+  .icones{
+    padding:0;
+  }
+
+  .botao{
+    padding-right: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .infoChat{
+    display: none!important;
+    height: 100%;
+  }
+
+  .chat{
+    height: 100%;
+  }
+
+  .botao{
+    padding-right: 0;
+  }
+
+  .icones{
+    padding:0 5px;
+  }
+
+  .buttonToggle{
+    display:block;
+  }
+
+  .buttonToggle i{
+    padding: 0 5px;
+  }
+
+  .buttonToggle:focus{
+    outline: 0;
+  }
+    
+  .img img{
+    width:50%;
+  }
 }
