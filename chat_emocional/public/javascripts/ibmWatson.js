@@ -134,5 +134,10 @@ $(document).ready(function () {
 
 // permite a execução do som no chrome
 function allowAutoPlay() {
-  $("#muteButton").attr("class", "fas fa-volume-off");
+  if ($("#muteButton").attr("class") == "fas fa-volume-off") {
+    $("#muteButton").attr("class", "fas fa-volume-mute");
+  }
+  else {
+    $("#muteButton").attr("class", "fas fa-volume-off");
+  }
 }
